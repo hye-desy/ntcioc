@@ -70,7 +70,12 @@ void read_ntc(std::atomic_uchar &run){
 
 	    time(&timev);
 	    value = read_adc(spiChannel,channelConfig,chan);
-	    temp[chan]=ThermistorCal(value);
+	    if(value>0){
+		temp[chan]=ThermistorCal(value);
+	    }
+	    else{
+		temp[chan]=0;
+	    }
 
 	    std::ofstream of_gpio_xx(gpio_str+std::to_string(gpio[i])+"/value");
 	    of_gpio_xx << "1";
