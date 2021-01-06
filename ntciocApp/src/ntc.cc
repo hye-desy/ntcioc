@@ -57,9 +57,9 @@ void read_ntc(std::atomic_uchar &run){
 
     time_t timev;
 
-    while(run){
+    spiSetup(spiChannel);
 
-	spiSetup(spiChannel);
+    while(run){
 
 	//  read ntc
 	for (int chan=0; chan<8; chan++) {
